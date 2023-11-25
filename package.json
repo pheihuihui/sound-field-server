@@ -1,0 +1,17 @@
+{
+    "name": "sound-field-server",
+    "version": "1.0.0",
+    "description": "Optional.",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "express": "4.18.2",
+        "serialport": "12.0.0",
+        "ws": "^8.14.2"
+    }
+}
