@@ -6,13 +6,13 @@ const message = { data: "" };
 
 const port = new SerialPort({
     path: "COM3",
-    baudRate: 115200,
+    baudRate: 115200
 });
 
-port.on("data", function (data) {
-    message.data = data.toString();
-    console.log(message.data);
-});
+port.on('data', data => {
+    console.log(data)
+    port.flush()
+})
 
 wss.on("connection", function connection(ws) {
     ws.on("error", console.error);
