@@ -1,18 +1,21 @@
 from Maix import MIC_ARRAY as mic
+import time
+from fpioa_manager import fm
+from machine import UART
+
+fm.register(5, fm.fpioa.UART1_TX, force=True)
+fm.register(4, fm.fpioa.UART1_RX, force=True)
+
+uart = UART(UART.UART1, 115200, 8, 1, 0, timeout=1000, read_buf_len=1024)
+
 mic.init()
 def get_mic_dir():
     imga = mic.get_map()
     b = mic.get_dir(imga)
     mic.set_led(b, (1, 1, 1))
-    txt = ''
-    for i in range(16):
-        for j in range(16):
-            tmp = imga.get_pixel((i, j))
-            if (tmp == 0):
-                txt += '0'
-            else:
-                txt += str(tmp) + ','
-    print(txt)
+    img_bytes = imga.to_bytes()
+    uart.write(img_bytes)
 while True:
     get_mic_dir()
+    # time.sleep(0.01)
 mic.deinit()
