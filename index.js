@@ -1,5 +1,5 @@
 import { SerialPort } from "serialport";
-import { ByteLengthParser } from '@serialport/parser-byte-length'
+import { DelimiterParser } from '@serialport/parser-delimiter'
 import { WebSocketServer } from "ws";
 
 const wss = new WebSocketServer({ port: 8080 });
@@ -10,7 +10,8 @@ const port = new SerialPort({
     baudRate: 115200,
 });
 
-const parser = port.pipe(new ByteLengthParser({ length: 256 }))
+// const parser = port.pipe(new ByteLengthParser({ length: 256 }))
+const parser = port.pipe(new DelimiterParser({ delimiter: Buffer.from(new Uint8Array([1, 2, 3, 4])) }))
 
 parser.on('data', data => {
     console.log(data)
