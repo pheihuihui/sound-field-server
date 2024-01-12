@@ -2,7 +2,7 @@
     "name": "sound-field-server",
     "version": "1.0.0",
     "description": "Optional.",
-    "type": "module",
+    "type": "commonjs",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,8 +10,12 @@
     "author": "",
     "license": "MIT",
     "dependencies": {
+        "cors": "2.8.5",
         "express": "4.18.2",
         "serialport": "12.0.0",
         "ws": "^8.14.2"
+    },
+    "devDependencies": {
+        "prettier": "3.1.1"
     }
 }
